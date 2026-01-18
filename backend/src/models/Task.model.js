@@ -62,8 +62,13 @@ taskSchema.pre('save', function (next) {
     this.status = 'completed';
     this.completedAt = Date.now();
   } else if (this.progress < 100 && this.isCompleted) {
+    // Reset completion status if progress drops below 100%
     this.isCompleted = false;
     this.completedAt = null;
+    // Update status to in-progress if it was completed
+    if (this.status === 'completed') {
+      this.status = 'in-progress';
+    }
   }
   
   this.updatedAt = Date.now();

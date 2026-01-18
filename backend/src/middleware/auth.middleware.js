@@ -45,8 +45,18 @@ const protect = async (req, res, next) => {
 };
 
 // Optional: Authorize based on roles (for future use)
+// NOTE: This middleware requires a 'role' field to be added to the User model
+// Currently exported but not used - reserved for future role-based access control
 const authorize = (...roles) => {
   return (req, res, next) => {
+    // Check if user has a role field (for future implementation)
+    if (!req.user.role) {
+      return res.status(403).json({
+        success: false,
+        message: 'User role not defined. Role-based authorization not yet implemented.',
+      });
+    }
+    
     if (!roles.includes(req.user.role)) {
       return res.status(403).json({
         success: false,
