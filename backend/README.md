@@ -476,9 +476,19 @@ npm run seed       # Seed database with demo data
 - **JWT Tokens:** 30-day expiration
 - **Protected Routes:** Middleware authentication
 - **Input Validation:** Express-validator on all inputs
+- **Email Validation:** ReDoS-safe email regex pattern
 - **No Password Leaks:** Password field excluded from responses
 - **CORS Protection:** Configurable allowed origins
 - **Error Handling:** Safe error messages without sensitive data
+
+### Production Security Recommendations
+
+For production deployments, consider implementing:
+- **Rate Limiting:** Prevent brute force attacks (e.g., express-rate-limit)
+- **Helmet.js:** Set security-related HTTP headers
+- **Input Sanitization:** Prevent NoSQL injection attacks
+- **HTTPS Only:** Enforce encrypted connections
+- **JWT Refresh Tokens:** Shorter access token expiration with refresh mechanism
 
 ## 🐛 Troubleshooting
 
